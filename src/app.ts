@@ -7,27 +7,31 @@ function showHello(divName: string, name: string) {
 //---------------------------------------------------------------------
 enum Category { JavaScript, CSS, HTML, TypeScript, Angular }
 
- function getAllBooks(): object[] {
-   let books: object[] = [
+ function getAllBooks(): any[] {
+   let books: any[] = [
      {
+       id: 1,
         title: 'Refactoring JavaScript', 
         author: 'Evan Burchard', 
         available: true,
         category: Category.JavaScript
        }, 
      {
+       id: 2,
         title: 'JavaScript Testing', 
         author: 'Liang Yuxian Eugene', 
         available: false ,
        category: Category.JavaScript
       }, 
      {
+       id: 3,
         title: 'CSS Secrets', 
         author: 'Lea Verou', 
         available: true,
        category: Category.CSS
      }, 
      {
+       id: 4,
         title: 'Mastering JavaScript Object-Oriented Programming',
         author: 'Andrea Chiarelli',
         available: true ,
@@ -73,11 +77,27 @@ function logBookTitles(titles: string[]): void {
   }
 }
 
+function getBooksByID(id: number): object {
+  const books = getAllBooks();
+  return books.find(book => book.id === id);
+}
+
 //=================================================
 //Task 01
 
 //logFirstAvailable(getAllBooks());
 
 //Task 02
+// const titles: string[] = getBookTitlesByCategory(Category.JavaScript);
+// logBookTitles(titles);
+
+//Task 03
 const titles: string[] = getBookTitlesByCategory(Category.JavaScript);
-logBookTitles(titles);
+titles.forEach((title: string, index: number) => {
+    console.log(`${index} - ${title}`)
+  }
+);
+
+const book = getBooksByID(10);
+console.log(book);
+
