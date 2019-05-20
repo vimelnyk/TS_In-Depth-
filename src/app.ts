@@ -4,27 +4,34 @@ function showHello(divName: string, name: string) {
   const elt = document.getElementById(divName);
   elt.innerText = `Hello from ${name}`;
 }
+//---------------------------------------------------------------------
+enum Category { JavaScript, CSS, HTML, TypeScript, Angular }
+
  function getAllBooks(): object[] {
    let books: object[] = [
      {
         title: 'Refactoring JavaScript', 
         author: 'Evan Burchard', 
-        available: true
+        available: true,
+        category: Category.JavaScript
        }, 
      {
         title: 'JavaScript Testing', 
         author: 'Liang Yuxian Eugene', 
-        available: false 
+        available: false ,
+       category: Category.JavaScript
       }, 
      {
         title: 'CSS Secrets', 
         author: 'Lea Verou', 
-        available: true
+        available: true,
+       category: Category.CSS
      }, 
      {
         title: 'Mastering JavaScript Object-Oriented Programming',
         author: 'Andrea Chiarelli',
-        available: true 
+        available: true ,
+       category: Category.JavaScript
     }
   ];
 
@@ -47,7 +54,30 @@ function logFirstAvailable(books: any[]): void {
 
 }
 
+function getBookTitlesByCategory(category:  Category): Array<string> {
+  const books: any[] = getAllBooks();
+  const titles: string[] = [];
+
+  for(const book of books){
+    if(book.category===category){
+      titles.push(book.title);      
+    } 
+  }
+
+  return titles;
+}
+
+function logBookTitles(titles: string[]): void {
+  for(const title of titles) {
+    console.log(title);
+  }
+}
+
 //=================================================
 //Task 01
 
-logFirstAvailable(getAllBooks());
+//logFirstAvailable(getAllBooks());
+
+//Task 02
+const titles: string[] = getBookTitlesByCategory(Category.JavaScript);
+logBookTitles(titles);
